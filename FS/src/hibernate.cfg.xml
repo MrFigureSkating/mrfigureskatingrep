@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">MANAGER</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/FS</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        <mapping class="main.java.entity.Choreographer"/>
+        <mapping class="main.java.entity.Citizenship"/>
+        <mapping class="main.java.entity.Coach"/>
+        <mapping class="main.java.entity.Competition"/>
+        <mapping class="main.java.entity.CompetitionType"/>
+        <mapping class="main.java.entity.Country"/>
+        <mapping class="main.java.entity.Discipline"/>
+        <mapping class="main.java.entity.Pair"/>
+        <mapping class="main.java.entity.Period"/>
+        <mapping class="main.java.entity.Person"/>
+        <mapping class="main.java.entity.Program"/>
+        <mapping class="main.java.entity.Result"/>
+        <mapping class="main.java.entity.Skater"/>
+        <mapping class="main.java.entity.SkaterCoach"/>
+        <mapping class="main.java.entity.SkaterCountry"/>
+        <mapping class="main.java.entity.SkaterDiscipline"/>
+        <mapping class="main.java.entity.SkaterPrograms"/>
+    </session-factory>
+
+</hibernate-configuration>
