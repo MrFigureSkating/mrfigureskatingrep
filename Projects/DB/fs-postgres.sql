@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      PostgreSQL 8                                 */
-/* Created on:     03.11.2014 11:49:56                          */
+/* Created on:     03.11.2014 12:41:25                          */
 /*==============================================================*/
 
 
@@ -116,9 +116,9 @@ drop index skater_program_FK;
 
 drop index choreographer_program2_FK;
 
-drop index skater_programs_PK;
+drop index skater_program_PK;
 
-drop table skater_programs;
+drop table skater_program;
 
 /*==============================================================*/
 /* Table: choreographer                                         */
@@ -186,7 +186,7 @@ id_coach
 /*==============================================================*/
 create table competition (
    id_competition       VARCHAR(32)          not null,
-   id_competition_type  VARCHAR(32)          not null,
+   id_competition_type  VARCHAR(32)          null,
    name_competition     VARCHAR(32)          not null,
    location             VARCHAR(32)          not null,
    start_date           DATE                 null,
@@ -245,7 +245,8 @@ short_name
 /*==============================================================*/
 create table discipline (
    id_discipline        VARCHAR(32)          not null,
-   name                 VARCHAR(30)          not null,
+   name                 VARCHAR(32)          not null
+      constraint CKC_NAME_DISCIPLI check (name in ('парное катание','танцы на льду','мужское одиночное катание','женское одиночное катание')),
    constraint PK_DISCIPLINE primary key (id_discipline)
 );
 
@@ -263,7 +264,8 @@ create table pair (
    id_pair              VARCHAR(32)          not null,
    id_lady              VARCHAR(32)          not null,
    id_man               VARCHAR(32)          not null,
-   discipline           VARCHAR(32)          not null,
+   discipline           VARCHAR(32)          not null
+      constraint CKC_DISCIPLINE_PAIR check (discipline in ('парное катание','танцы на льду')),
    constraint PK_PAIR primary key (id_pair)
 );
 
@@ -362,20 +364,20 @@ create table result (
    id_pair              VARCHAR(32)          null,
    discipline           VARCHAR(32)          not null,
    country              VARCHAR(32)          not null,
-   cd_score             DECIMAL(5,2)         null,
-   cd_place             INT4                 null,
+   cd_score             VARCHAR(6)           null,
+   cd_place             VARCHAR(6)           null,
    cd_video             VARCHAR(100)         null,
    cd_program           VARCHAR(32)          null,
-   sp_score             DECIMAL(5,2)         null,
-   sp_place             INT4                 null,
+   sp_score             VARCHAR(6)           null,
+   sp_place             VARCHAR(6)           null,
    sp_video             VARCHAR(100)         null,
    sp_program           VARCHAR(32)          null,
-   fs_score             DECIMAL(5,2)         null,
-   fs_place             INT4                 null,
+   fs_score             VARCHAR(6)           null,
+   fs_place             VARCHAR(6)           null,
    fs_video             VARCHAR(100)         null,
    fs_program           VARCHAR(32)          null,
-   total_place          INT4                 null,
-   total_score          DECIMAL(5,2)         null,
+   total_place          VARCHAR(6)           null,
+   total_score          VARCHAR(6)           null,
    photo                VARCHAR(2000)        null,
    constraint PK_RESULT primary key (id_result)
 );
@@ -560,9 +562,9 @@ id_discipline
 );
 
 /*==============================================================*/
-/* Table: skater_programs                                       */
+/* Table: skater_program                                        */
 /*==============================================================*/
-create table skater_programs (
+create table skater_program (
    id_program_single_or_pair_chore VARCHAR(32)          not null,
    id_program           VARCHAR(32)          not null,
    id_single            VARCHAR(32)          null,
@@ -571,41 +573,41 @@ create table skater_programs (
    discipline           VARCHAR(32)          null,
    season               INT4                 null,
    type                 VARCHAR(2)           null,
-   constraint PK_SKATER_PROGRAMS primary key (id_program_single_or_pair_chore)
+   constraint PK_SKATER_PROGRAM primary key (id_program_single_or_pair_chore)
 );
 
 /*==============================================================*/
-/* Index: skater_programs_PK                                    */
+/* Index: skater_program_PK                                     */
 /*==============================================================*/
-create unique index skater_programs_PK on skater_programs (
+create unique index skater_program_PK on skater_program (
 id_program_single_or_pair_chore
 );
 
 /*==============================================================*/
 /* Index: choreographer_program2_FK                             */
 /*==============================================================*/
-create  index choreographer_program2_FK on skater_programs (
+create  index choreographer_program2_FK on skater_program (
 id_choreographer
 );
 
 /*==============================================================*/
 /* Index: skater_program_FK                                     */
 /*==============================================================*/
-create  index skater_program_FK on skater_programs (
+create  index skater_program_FK on skater_program (
 id_single
 );
 
 /*==============================================================*/
 /* Index: pair_program_FK                                       */
 /*==============================================================*/
-create  index pair_program_FK on skater_programs (
+create  index pair_program_FK on skater_program (
 id_pair
 );
 
 /*==============================================================*/
 /* Index: program_skater_programs_FK                            */
 /*==============================================================*/
-create  index program_skater_programs_FK on skater_programs (
+create  index program_skater_programs_FK on skater_program (
 id_program
 );
 
@@ -656,17 +658,17 @@ alter table result
 
 alter table result
    add constraint FK_RESULT_RESULT_PR_SKATER_P3 foreign key (fs_program)
-      references skater_programs (id_program_single_or_pair_chore)
+      references skater_program (id_program_single_or_pair_chore)
       on delete restrict on update restrict;
 
 alter table result
    add constraint FK_RESULT_RESULT_PR_SKATER_P2 foreign key (sp_program)
-      references skater_programs (id_program_single_or_pair_chore)
+      references skater_program (id_program_single_or_pair_chore)
       on delete restrict on update restrict;
 
 alter table result
    add constraint FK_RESULT_RESULT_PR_SKATER_P foreign key (cd_program)
-      references skater_programs (id_program_single_or_pair_chore)
+      references skater_program (id_program_single_or_pair_chore)
       on delete restrict on update restrict;
 
 alter table result
@@ -724,22 +726,22 @@ alter table skater_discipline
       references skater (id_skater)
       on delete restrict on update restrict;
 
-alter table skater_programs
+alter table skater_program
    add constraint FK_SKATER_P_CHOREOGRA_CHOREOGR foreign key (id_choreographer)
       references choreographer (id_choreographer)
       on delete restrict on update restrict;
 
-alter table skater_programs
+alter table skater_program
    add constraint FK_SKATER_P_PAIR_PROG_PAIR foreign key (id_pair)
       references pair (id_pair)
       on delete restrict on update restrict;
 
-alter table skater_programs
+alter table skater_program
    add constraint FK_SKATER_P_PROGRAM_S_PROGRAM foreign key (id_program)
       references program (id_program)
       on delete restrict on update restrict;
 
-alter table skater_programs
+alter table skater_program
    add constraint FK_SKATER_P_SKATER_PR_SKATER foreign key (id_single)
       references skater (id_skater)
       on delete restrict on update restrict;
