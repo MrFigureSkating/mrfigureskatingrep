@@ -1,0 +1,50 @@
+html{
+    position: relative;
+    min-height: 100%;
+}
+body{
+    margin-bottom: 100px;
+}
+#mainContainer{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.head{
+    margin-top: 20px;
+}
+.header{
+    background-color: #4f7cc7;
+}
+.content{
+    margin-top: 20px;
+    background-color: #ffffff;
+}
+.footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background-color: #737373;
+}
+.navbar{
+    vertical-align: middle;
+    margin-bottom: 0px;
+}
+.navbar-default .navbar-brand,.navbar-default .navbar-brand:hover{
+    font-family: Georgia, serif;
+    font-size: 30px;
+    font-style: italic;
+    color: #4f7cc7;
+}
+
+.marketing .col-lg-4 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+.marketing h2 {
+    font-weight: normal;
+}
+.marketing .col-lg-4 p {
+    margin-right: 10px;
+    margin-left: 10px;
+}
