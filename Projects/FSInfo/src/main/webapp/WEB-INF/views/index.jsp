@@ -1,22 +1,18 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
+    <title>FS-info</title>
 
     <!-- Bootstrap -->
-    <link href="lib/css/bootstrap.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="lib/css/font-awesome.css" rel="stylesheet">
+    <link href="<c:url value="/resources/lib/css/bootstrap.css" />" rel="stylesheet">
+    <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
+    <link href="<c:url value="/resources/lib/css/font-awesome.css" />" rel="stylesheet">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 <body>
     <!--Главный контейнер -->
@@ -38,11 +34,11 @@
                                         <span class="icon-bar"></span>
                                         <span class="icon-bar"></span>
                                     </button>
-                                    <a class="navbar-brand" href="index.html">FS-info</a>
+                                    <a class="navbar-brand" href="main">FS-info</a>
                                 </div>
                                 <div class="collapse navbar-collapse">
                                     <ul class="nav navbar-nav">
-                                        <li><a href="info.html">База знаний</a></li>
+                                        <li><a href="info">База знаний</a></li>
                                         <li><a href="#">Поиск тренера</a></li>
                                         <li><a href="#">Поиск школы/катка</a></li>
                                     </ul>
@@ -60,21 +56,21 @@
                             </ol>
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <img src="images/4.jpg" alt="">
+                                    <img src="<c:url value="/resources/images/4.jpg" />" alt="">
                                     <div class="carousel-caption">
                                         <h3>Первый</h3>
                                         <p>описание первого слайда</p>
                                     </div>
                                 </div>
                                 <div class="item">
-                                    <img src="images/5.jpg" alt="">
+                                    <img src="<c:url value="/resources/images/4.jpg" />" alt="">
                                     <div class="carousel-caption">
                                         <h3>Второй</h3>
                                         <p>описание второго слайда</p>
                                     </div>
                                 </div>
                                 <div class="item">
-                                    <img src="images/6.jpg" alt="">
+                                    <img src="<c:url value="/resources/images/4.jpg" />" alt="">
                                     <div class="carousel-caption">
                                         <h3>Третий</h3>
                                         <p>описание третьего слайда</p>
@@ -103,7 +99,7 @@
                             <!--<img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" style="width: 140px; height: 140px;">-->
                             <h2>База знаний</h2>
                             <p>Хотите узнать о любимом фигуристе или посмотреть результаты соревнований? Мы собрали для вас информацию о фигуристах, их тренерах, соревнованиях, правилах, и о многом другом!</p>
-                            <p><a class="btn btn-primary" href="info.html" role="button">Узнать больше &raquo;</a></p>
+                            <p><a class="btn btn-primary" href="info" role="button">Узнать больше &raquo;</a></p>
                         </div>
                         <div class="col-lg-4">
                             <i class="fa fa-user fa-5x"></i>
@@ -134,8 +130,8 @@
     </div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="lib/js/jquery-2.1.1.js"></script>
+<script src="<c:url value="/resources/lib/js/jquery-2.1.1.js" />"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="lib/js/bootstrap.js"></script>
+<script src="<c:url value="/resources/lib/js/bootstrap.js" />"></script>
 </body>
 </html>
