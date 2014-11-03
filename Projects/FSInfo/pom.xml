@@ -135,28 +135,28 @@
             </plugin>
 
             <!-- нужно для git commit as ${buildNumber}-->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>buildnumber-maven-plugin</artifactId>
-                <version>1.0</version>
-                <configuration>
-                    <format>{0}-{1,date,yyyyMMdd}</format>
-                    <items>
-                        <item>${project.version}</item>
-                        <item>timestamp</item>
-                    </items>
-                    <doCheck>true</doCheck>
-                    <doUpdate>true</doUpdate>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>create</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.codehaus.mojo</groupId>-->
+                <!--<artifactId>buildnumber-maven-plugin</artifactId>-->
+                <!--<version>1.0</version>-->
+                <!--<configuration>-->
+                    <!--<format>{0}-{1,date,yyyyMMdd}</format>-->
+                    <!--<items>-->
+                        <!--<item>${project.version}</item>-->
+                        <!--<item>timestamp</item>-->
+                    <!--</items>-->
+                    <!--<doCheck>true</doCheck>-->
+                    <!--<doUpdate>true</doUpdate>-->
+                <!--</configuration>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<phase>validate</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>create</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -170,7 +170,7 @@
                             <classpathLayoutType>simple</classpathLayoutType>
                         </manifest>
                         <manifestEntries>
-                            <Version>${buildNumber}</Version>
+                            <Version>${maven.build.timestamp}</Version>
                         </manifestEntries>
                     </archive>
                 </configuration>
