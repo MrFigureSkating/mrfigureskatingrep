@@ -246,7 +246,7 @@ short_name
 create table discipline (
    id_discipline        VARCHAR(32)          not null,
    name                 VARCHAR(32)          not null
-      constraint CKC_NAME_DISCIPLI check (name in ('парное катание','танцы на льду','мужское одиночное катание','женское одиночное катание')),
+      constraint CKC_NAME_DISCIPLI check (name in ('РїР°СЂРЅРѕРµ РєР°С‚Р°РЅРёРµ','С‚Р°РЅС†С‹ РЅР° Р»СЊРґСѓ','РјСѓР¶СЃРєРѕРµ РѕРґРёРЅРѕС‡РЅРѕРµ РєР°С‚Р°РЅРёРµ','Р¶РµРЅСЃРєРѕРµ РѕРґРёРЅРѕС‡РЅРѕРµ РєР°С‚Р°РЅРёРµ')),
    constraint PK_DISCIPLINE primary key (id_discipline)
 );
 
@@ -265,7 +265,7 @@ create table pair (
    id_lady              VARCHAR(32)          not null,
    id_man               VARCHAR(32)          not null,
    discipline           VARCHAR(32)          not null
-      constraint CKC_DISCIPLINE_PAIR check (discipline in ('парное катание','танцы на льду')),
+      constraint CKC_DISCIPLINE_PAIR check (discipline in ('РїР°СЂРЅРѕРµ РєР°С‚Р°РЅРёРµ','С‚Р°РЅС†С‹ РЅР° Р»СЊРґСѓ')),
    constraint PK_PAIR primary key (id_pair)
 );
 
