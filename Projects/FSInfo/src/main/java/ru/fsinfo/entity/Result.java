@@ -29,6 +29,22 @@ public class Result {
     private SkaterProgram skaterProgramBySpProgram;
     private SkaterProgram skaterProgramByCdProgram;
 
+    @Override
+    public String toString() {
+        return "Result{" +
+                "idResult='" + idResult + '\'' +
+                ", discipline='" + discipline + '\'' +
+                ", country='" + country + '\'' +
+                ", spScore='" + spScore + '\'' +
+                ", spPlace='" + spPlace + '\'' +
+                ", fsScore='" + fsScore + '\'' +
+                ", fsPlace='" + fsPlace + '\'' +
+                ", totalPlace='" + totalPlace + '\'' +
+                ", totalScore='" + totalScore + '\'' +
+                ", skaterByIdSingle=" + skaterByIdSingle +
+                '}';
+    }
+
     @Id
     @Column(name = "id_result", nullable = false, insertable = true, updatable = true, length = 32)
     public String getIdResult() {

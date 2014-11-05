@@ -6,6 +6,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by ArsenyPC on 26.10.2014.
@@ -156,8 +157,8 @@ public class Main
 //            query.setParameter("name","Юлия Липницкая");
 //            List results=query.list();
             Skater sotnikova=new Skater();
-            sotnikova.setIdPerson("1");
-            sotnikova.setName("Cjnybrjdf");
+            sotnikova.setIdPerson(UUID.randomUUID().toString().substring(0,30));
+            sotnikova.setName("Сотникова");
             session.save(sotnikova);
             session.getTransaction().commit();
         }catch (Exception e)

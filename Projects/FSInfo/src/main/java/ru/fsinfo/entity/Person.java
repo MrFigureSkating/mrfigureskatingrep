@@ -3,6 +3,7 @@ package ru.fsinfo.entity;
 import javax.persistence.*;
 import java.util.Calendar;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by ArsenyPC on 03.11.2014.
@@ -39,6 +40,7 @@ public class Person {
     }
 
     public void setIdPerson(String idPerson) {
+//        UUID uuid=UUID.randomUUID();
         this.idPerson = idPerson;
     }
 
