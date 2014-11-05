@@ -58,7 +58,7 @@ public class Pair {
         return result;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "id_lady", referencedColumnName = "id_skater", nullable = false)
     public Skater getSkaterByIdLady() {
         return skaterByIdLady;
@@ -68,7 +68,7 @@ public class Pair {
         this.skaterByIdLady = skaterByIdLady;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "id_man", referencedColumnName = "id_skater", nullable = false)
     public Skater getSkaterByIdMan() {
         return skaterByIdMan;

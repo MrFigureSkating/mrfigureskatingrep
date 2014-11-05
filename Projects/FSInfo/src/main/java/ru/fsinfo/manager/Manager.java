@@ -62,6 +62,23 @@ public class Manager
                 session.close();
         }
     }
+    public static void savep(Pair person)
+    {
+        Session session=null;
+        try
+        {
+            session= HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            session.save(person);
+            session.getTransaction().commit();
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }finally {
+            if ((session != null) && (session.isOpen()))
+                session.close();
+        }
+    }
 
     public static void saveList(List<Result> objects)
     {
@@ -91,7 +108,7 @@ public class Manager
             if (skater==null)
             {
                 skater = new Skater();
-                skater.setIdPerson(UUID.randomUUID().toString().substring(0,30));
+                skater.setIdPerson(UUID.randomUUID().toString().substring(0,28));
                 skater.setName(name);
                 skater.setSex(getSex(kind));
                 Manager.save(skater);
@@ -99,8 +116,9 @@ public class Manager
             result.setSkaterByIdSingle(skater);
         }
         else
-            if (kind.equals("Pair")||kind.equals("Ice Dance"))
+            if (kind.equals("Pairs")||kind.equals("Ice Dance"))
             {
+                Pair pair=null;
                 Skater man=null;
                 Skater lady=null;
                 String[] pairNames=name.split("/");
@@ -112,8 +130,8 @@ public class Manager
                 if (lady==null)
                 {
                     lady = new Skater();
-                    lady.setIdPerson(UUID.randomUUID().toString().substring(0,30));
-                    lady.setName(name);
+                    lady.setIdPerson(UUID.randomUUID().toString().substring(0,28));
+                    lady.setName(ladyName);
                     lady.setSex("f");
                     Manager.save(lady);
                     isManOrLadyNew=true;
@@ -122,44 +140,45 @@ public class Manager
                 if (man==null)
                 {
                     man = new Skater();
-                    man.setIdPerson(UUID.randomUUID().toString().substring(0,30));
-                    man.setName(name);
+                    man.setIdPerson(UUID.randomUUID().toString().substring(0,28));
+                    man.setName(manName);
                     man.setSex("m");
                     Manager.save(man);
                     isManOrLadyNew=true;
                 }
                 if (isManOrLadyNew)
                 {
-                    Pair pair=new Pair();
-                    pair.setIdPair(UUID.randomUUID().toString().substring(0,30));
+                    pair=new Pair();
+                    pair.setIdPair(UUID.randomUUID().toString().substring(0,28));
                     pair.setSkaterByIdLady(lady);
                     pair.setSkaterByIdMan(man);
                     pair.setDiscipline(getRussianWord(kind));
-                    Manager.save(pair);
+                    Manager.savep(pair);
                 }
                 else
                 {
-                    boolean areTheyPartners=true;
-                    List<Pair> pairs=man.getPairsByIdMan();
+                    boolean areTheyPartners=false;
+                    List<Pair> pairs=man.getPairsByIdLady();
                     for(Pair p:pairs)
                     {
                         if (p.getSkaterByIdLady().getIdPerson().equals(lady.getIdPerson()))
                         {
-                            areTheyPartners=false;
+                            pair=p;
+                            areTheyPartners=true;
                             break;
                         }
                     }
                     if (!areTheyPartners)
                     {
-                        Pair pair=new Pair();
-                        pair.setIdPair(UUID.randomUUID().toString().substring(0,30));
+                        pair=new Pair();
+                        pair.setIdPair(UUID.randomUUID().toString().substring(0,28));
                         pair.setSkaterByIdLady(lady);
                         pair.setSkaterByIdMan(man);
                         pair.setDiscipline(getRussianWord(kind));
-                        Manager.save(pair);
+                        Manager.savep(pair);
                     }
                 }
-
+            result.setPairByIdPair(pair);
             }
     }
 

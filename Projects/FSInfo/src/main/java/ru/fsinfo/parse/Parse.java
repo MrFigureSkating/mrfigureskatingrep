@@ -160,20 +160,21 @@ public class Parse {
             result.setTotalScore(rowItems.get(6).text());
             result.setCountry(rowItems.get(5).text());
             String name = rowItems.get(1).text();
-            if (kind.equals("Men") || kind.equals("Ladies"))
-            {
-//                Manager.
-            }
-            Skater skater = (Skater) Manager.checkPersonByName(name);
-            if (skater==null)
-            {
-                skater = new Skater();
-                skater.setIdPerson(UUID.randomUUID().toString().substring(0,30));
-                skater.setName(name);
-                skater.setSex(getSex(kind));
-                Manager.save(skater);
-            }
-            result.setSkaterByIdSingle(skater);
+//            if (kind.equals("Men") || kind.equals("Ladies"))
+//            {
+////                Manager.
+//            }
+            Manager.setSkaterOrPairToResult(result,kind,name);
+//            Skater skater = (Skater) Manager.checkPersonByName(name);
+//            if (skater==null)
+//            {
+//                skater = new Skater();
+//                skater.setIdPerson(UUID.randomUUID().toString().substring(0,30));
+//                skater.setName(name);
+//                skater.setSex(getSex(kind));
+//                Manager.save(skater);
+//            }
+//            result.setSkaterByIdSingle(skater);
             result.setDiscipline(getRussianWord(kind));
 //                Competition c=new Competition();
 //                c.setIdCompetition(""+i*10);

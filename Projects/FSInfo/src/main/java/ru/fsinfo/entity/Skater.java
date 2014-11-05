@@ -47,7 +47,7 @@ public class Skater extends Person {
         return getIdPerson() != null ? getIdPerson().hashCode() : 0;
     }
 
-    @OneToMany(mappedBy = "skaterByIdLady")
+    @OneToMany(mappedBy = "skaterByIdLady",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     public List<Pair> getPairsByIdMan() {
         return pairsByIdMan;
     }
@@ -56,7 +56,7 @@ public class Skater extends Person {
         this.pairsByIdMan = pairsByIdMan;
     }
 
-    @OneToMany(mappedBy = "skaterByIdMan")
+    @OneToMany(mappedBy = "skaterByIdMan",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     public List<Pair> getPairsByIdLady() {
         return pairsByIdLady;
     }
